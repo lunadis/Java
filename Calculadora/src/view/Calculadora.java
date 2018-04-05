@@ -1,17 +1,38 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Insets;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JTextField;
 
 public class Calculadora extends JFrame {
 	
-	JTextField visor = new JTextField();
+	ButtonGroup tipo = new ButtonGroup ();
+	
+	JMenu Exibir = new JMenu("Exibir");
+	JRadioButtonMenuItem radipadrao = new JRadioButtonMenuItem("Padão");
+	JRadioButtonMenuItem radicienti = new JRadioButtonMenuItem("Cientifica");
+	JRadioButtonMenuItem radiprograma = new JRadioButtonMenuItem("Programador");
+	JRadioButtonMenuItem radiestatist = new JRadioButtonMenuItem("Estatistica");
+	JCheckBoxMenuItem cbAgrupamento = new JCheckBoxMenuItem ("Agrupamento de Digitos");
+	
+	
+	JMenu Editar = new JMenu("Editar");
+	JMenu Ajuda = new JMenu("Ajuda");
+	
+	JMenuBar menuBar = new JMenuBar();
+	
+	JTextField visor = new JTextField("0");
 	// primeira fileira de botões
 	JButton btnMC = new JButton("MC");
 	JButton btnMR = new JButton("MR");
@@ -60,157 +81,190 @@ public class Calculadora extends JFrame {
 		Container paine = this.getContentPane();
 		paine.setLayout(null);
 		
+		// Barra de menu superior
+		menuBar.setBounds(0, 0, 228, 25);
+		paine.add(menuBar);
+		
+		
+		
+		Exibir.setFont( new Font( "Arial", Font.PLAIN, 12 ));
+		Exibir.setBounds(1, 5, 45, 20);
+		menuBar.add(Exibir);
+		Exibir.add(radipadrao);
+		Exibir.add(radicienti);
+		Exibir.add(radiprograma);
+		Exibir.add(radiestatist);
+		Exibir.addSeparator();
+		Exibir.add("Histórico       Crtl + H");
+		Exibir.add(cbAgrupamento);
+		Exibir.addSeparator();
+		
+		
+		
+		
+		Editar.setFont( new Font( "Arial", Font.PLAIN, 12 ));
+		Editar.setBounds(46, 5, 45, 20);
+		menuBar.add(Editar);
+		
+		Ajuda.setFont( new Font( "Arial", Font.PLAIN, 12 ));
+		Ajuda.setBounds(91, 5, 45, 20);
+		menuBar.add(Ajuda);
+		
+		
+		
+		
+		// Visor
 		visor.setFont( new Font( "Arial", Font.PLAIN, 20 ));
-		visor.setBounds(20, 20, 171, 50);
+		visor.setBounds(20, 40, 171, 50);
 		paine.add(visor);
 		
 		//primeira fileira
 		btnMC.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMC.setMargin(new Insets(1,1,1,1));
-		btnMC.setBounds(20, 75, 30,25);
+		btnMC.setBounds(20, 95, 30,25);
 		paine.add(btnMC);
 		
 		btnMR.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMR.setMargin(new Insets(1,1,1,1));
-		btnMR.setBounds(55, 75, 30,25);
+		btnMR.setBounds(55, 95, 30,25);
 		paine.add(btnMR);
 		
 		btnMS.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMS.setMargin(new Insets(1,1,1,1));
-		btnMS.setBounds(90, 75, 30,25);
+		btnMS.setBounds(90, 95, 30,25);
 		paine.add(btnMS);
 		
 		btnMais.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMais.setMargin(new Insets(1,1,1,1));
-		btnMais.setBounds(125, 75, 30,25);
+		btnMais.setBounds(125, 95, 30,25);
 		paine.add(btnMais);
 		
 		btnMenos.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMenos.setMargin(new Insets(1,1,1,1));
-		btnMenos.setBounds(160, 75, 30,25);
+		btnMenos.setBounds(160, 95, 30,25);
 		paine.add(btnMenos);
 		
 		//segunda fileira
 		backsp.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		backsp.setMargin(new Insets(1,1,1,1));
-		backsp.setBounds(20, 105, 30, 25);
+		backsp.setBounds(20, 125, 30, 25);
 		paine.add(backsp);
 		
 		btnCE.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnCE.setMargin(new Insets(1,1,1,1));
-		btnCE.setBounds(55, 105, 30, 25);
+		btnCE.setBounds(55, 125, 30, 25);
 		paine.add(btnCE);
 		
 		btnC.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnC.setMargin(new Insets(1,1,1,1));
-		btnC.setBounds(90, 105, 30, 25);
+		btnC.setBounds(90, 125, 30, 25);
 		paine.add(btnC);
 		
 		
 		btnmom.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnmom.setMargin(new Insets(1,1,1,1));
-		btnmom.setBounds(125, 105, 30, 25);
+		btnmom.setBounds(125, 125, 30, 25);
 		paine.add(btnmom);
 		
 		btnraiz.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnraiz.setMargin(new Insets(1,1,1,1));
-		btnraiz.setBounds(160, 105, 30, 25);
+		btnraiz.setBounds(160, 125, 30, 25);
 		paine.add(btnraiz);
 		
 		//terceira fileira
 		sete.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		sete.setMargin(new Insets(1,1,1,1));
-		sete.setBounds(20, 135, 30, 25);
+		sete.setBounds(20, 155, 30, 25);
 		paine.add(sete);
 		
 		
 		oito.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		oito.setMargin(new Insets(1,1,1,1));
-		oito.setBounds(55, 135, 30, 25);
+		oito.setBounds(55, 155, 30, 25);
 		paine.add(oito);
 		
 		nove.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		nove.setMargin(new Insets(1,1,1,1));
-		nove.setBounds(90, 135, 30, 25);
+		nove.setBounds(90, 155, 30, 25);
 		paine.add(nove);
 		
 		btnbarra.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnbarra.setMargin(new Insets(1,1,1,1));
-		btnbarra.setBounds(125, 135, 30, 25);
+		btnbarra.setBounds(125, 155, 30, 25);
 		paine.add(btnbarra);
 		
 		btnporc.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnporc.setMargin(new Insets(1,1,1,1));
-		btnporc.setBounds(160, 135, 30, 25);
+		btnporc.setBounds(160, 155, 30, 25);
 		paine.add(btnporc);
 		
 		//quarta fileira
 		quatro.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		quatro.setMargin(new Insets(1,1,1,1));
-		quatro.setBounds(20, 165, 30, 25);
+		quatro.setBounds(20, 185, 30, 25);
 		paine.add(quatro);
 		
 		cinco.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		cinco.setMargin(new Insets(1,1,1,1));
-		cinco.setBounds(55, 165, 30, 25);
+		cinco.setBounds(55, 185, 30, 25);
 		paine.add(cinco);
 		
 		seis.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		seis.setMargin(new Insets(1,1,1,1));
-		seis.setBounds(90, 165, 30, 25);
+		seis.setBounds(90, 185, 30, 25);
 		paine.add(seis);
 		
 		btnmul.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnmul.setMargin(new Insets(1,1,1,1));
-		btnmul.setBounds(125, 165, 30, 25);
+		btnmul.setBounds(125, 185, 30, 25);
 		paine.add(btnmul);
 		
 		btnfra.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnfra.setMargin(new Insets(1,1,1,1));
-		btnfra.setBounds(160, 165, 30, 25);
+		btnfra.setBounds(160, 185, 30, 25);
 		paine.add(btnfra);
 		
 		//quinta fileira
 		
 		um.setFont(new Font("Arial", Font.PLAIN, 12));
 		um.setMargin(new Insets(1,1,1,1));
-		um.setBounds(20, 195, 30, 25);
+		um.setBounds(20, 215, 30, 25);
 		paine.add(um);
 		
 		dois.setFont(new Font("Arial", Font.PLAIN, 12));
 		dois.setMargin(new Insets(1,1,1,1));
-		dois.setBounds(55, 195, 30, 25);
+		dois.setBounds(55, 215, 30, 25);
 		paine.add(dois);
 		
 		tres.setFont(new Font("Arial", Font.PLAIN, 12));
 		tres.setMargin(new Insets(1,1,1,1));
-		tres.setBounds(90, 195, 30, 25);
+		tres.setBounds(90, 215, 30, 25);
 		paine.add(tres);
 		
 		btnfmenos.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnfmenos.setMargin(new Insets(1,1,1,1));
-		btnfmenos.setBounds(125, 195, 30, 25);
+		btnfmenos.setBounds(125, 215, 30, 25);
 		paine.add(btnfmenos);
 		
 		btnfigual.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnfigual.setMargin(new Insets(1,1,1,1));
-		btnfigual.setBounds(160, 195, 30, 55);
+		btnfigual.setBounds(160, 215, 30, 55);
 		paine.add(btnfigual);
 		
 		//sexta fileira
 		zero.setFont(new Font("Arial", Font.PLAIN, 12));
 		zero.setMargin(new Insets(1,1,1,1));
-		zero.setBounds(20, 225, 65, 25);
+		zero.setBounds(20, 245, 65, 25);
 		paine.add(zero);
 		
 		btnvirgula.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnvirgula.setMargin(new Insets(1,1,1,1));
-		btnvirgula.setBounds(90, 225, 30, 25);
+		btnvirgula.setBounds(90, 245, 30, 25);
 		paine.add(btnvirgula);
 		
 		btnfmais.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnfmais.setMargin(new Insets(1,1,1,1));
-		btnfmais.setBounds(125, 225, 30, 25);
+		btnfmais.setBounds(125, 245, 30, 25);
 		paine.add(btnfmais);
 			
 		
