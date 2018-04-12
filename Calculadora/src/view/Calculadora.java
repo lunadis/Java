@@ -9,13 +9,18 @@ import javax.swing.JRadioButtonMenuItem;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JTextField;
+import Calculo.FuncoesMatematicas;
+
 
 public class Calculadora extends JFrame {
+	
 	
 	ButtonGroup tipo = new ButtonGroup ();
 	
@@ -75,6 +80,11 @@ public class Calculadora extends JFrame {
 	JButton nove = new JButton("9");
 	JButton zero = new JButton("0");
 	
+	FuncoesMatematicas mat = new FuncoesMatematicas();
+	String sinal = null, sinalp = null;
+	double valor1 = 0, valor2 = 0;
+	
+	
 	public Calculadora(){
 		super("calculadora");
 		
@@ -123,6 +133,12 @@ public class Calculadora extends JFrame {
 		btnMC.setMargin(new Insets(1,1,1,1));
 		btnMC.setBounds(20, 95, 30,25);
 		paine.add(btnMC);
+		btnMC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					visor.setText("0");				
+			}
+		});
+		
 		
 		btnMR.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMR.setMargin(new Insets(1,1,1,1));
@@ -159,6 +175,12 @@ public class Calculadora extends JFrame {
 		btnC.setMargin(new Insets(1,1,1,1));
 		btnC.setBounds(90, 125, 30, 25);
 		paine.add(btnC);
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					visor.setText("0");				
+			}
+		});
+		
 		
 		
 		btnmom.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
@@ -176,48 +198,148 @@ public class Calculadora extends JFrame {
 		sete.setMargin(new Insets(1,1,1,1));
 		sete.setBounds(20, 155, 30, 25);
 		paine.add(sete);
+		sete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("7");
+				}else {
+					visor.setText(visor.getText() +  "7");
+				}
+				
+				
+			}
+		});
 		
 		
 		oito.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		oito.setMargin(new Insets(1,1,1,1));
 		oito.setBounds(55, 155, 30, 25);
 		paine.add(oito);
+		oito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("8");
+				}else {
+					visor.setText(visor.getText() + "8");
+				}
+				
+				
+			}
+		});
 		
 		nove.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		nove.setMargin(new Insets(1,1,1,1));
 		nove.setBounds(90, 155, 30, 25);
 		paine.add(nove);
+		nove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("9");
+				}else {
+					visor.setText(visor.getText() + "9");
+				}
+				
+				
+			}
+		});
 		
 		btnbarra.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnbarra.setMargin(new Insets(1,1,1,1));
 		btnbarra.setBounds(125, 155, 30, 25);
 		paine.add(btnbarra);
+		btnbarra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1 = Double.parseDouble(visor.getText());
+				sinal = "divisao";
+				visor.setText("0");
+			}
+		});
 		
 		btnporc.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnporc.setMargin(new Insets(1,1,1,1));
 		btnporc.setBounds(160, 155, 30, 25);
 		paine.add(btnporc);
+		btnporc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor2 = Double.parseDouble(visor.getText());
+				valor2 = mat.porcentagem(valor1, valor2);
+				visor.setText(valor2+"");
+			}
+		});
 		
 		//quarta fileira
 		quatro.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		quatro.setMargin(new Insets(1,1,1,1));
 		quatro.setBounds(20, 185, 30, 25);
 		paine.add(quatro);
+		quatro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("4");
+				}else {
+					visor.setText(visor.getText() + "4");
+				}
+				
+				
+			}
+		});
+		
 		
 		cinco.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		cinco.setMargin(new Insets(1,1,1,1));
 		cinco.setBounds(55, 185, 30, 25);
 		paine.add(cinco);
+		cinco.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("5");
+				}else {
+					visor.setText(visor.getText() + "5");
+				}
+				
+				
+			}
+		});
 		
 		seis.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		seis.setMargin(new Insets(1,1,1,1));
 		seis.setBounds(90, 185, 30, 25);
 		paine.add(seis);
+		seis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("6");
+				}else {
+					visor.setText(visor.getText() + "6");
+				}
+				
+				
+			}
+		});
 		
 		btnmul.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnmul.setMargin(new Insets(1,1,1,1));
 		btnmul.setBounds(125, 185, 30, 25);
 		paine.add(btnmul);
+		btnmul.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1 = Double.parseDouble(visor.getText());
+				sinal = "multiplicacao";
+				visor.setText("0");
+			}
+		});
 		
 		btnfra.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnfra.setMargin(new Insets(1,1,1,1));
@@ -230,32 +352,110 @@ public class Calculadora extends JFrame {
 		um.setMargin(new Insets(1,1,1,1));
 		um.setBounds(20, 215, 30, 25);
 		paine.add(um);
+		um.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("1");
+				}else {
+					visor.setText(visor.getText() + "1");
+				}
+				
+				
+			}
+		});
 		
 		dois.setFont(new Font("Arial", Font.PLAIN, 12));
 		dois.setMargin(new Insets(1,1,1,1));
 		dois.setBounds(55, 215, 30, 25);
 		paine.add(dois);
+		dois.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("2");
+				}else {
+					visor.setText(visor.getText() + "2");
+				}
+				
+				
+			}
+		});
 		
 		tres.setFont(new Font("Arial", Font.PLAIN, 12));
 		tres.setMargin(new Insets(1,1,1,1));
 		tres.setBounds(90, 215, 30, 25);
 		paine.add(tres);
+		tres.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("3");
+				}else {
+					visor.setText(visor.getText() + "3");
+				}
+				
+				
+			}
+		});
 		
 		btnfmenos.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnfmenos.setMargin(new Insets(1,1,1,1));
 		btnfmenos.setBounds(125, 215, 30, 25);
 		paine.add(btnfmenos);
+		btnfmenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1 = Double.parseDouble(visor.getText());
+				sinal = "subtracao";
+				visor.setText("0");
+			}
+		});
+		
 		
 		btnfigual.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnfigual.setMargin(new Insets(1,1,1,1));
 		btnfigual.setBounds(160, 215, 30, 55);
 		paine.add(btnfigual);
+		btnfigual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor2 = Double.parseDouble(visor.getText());
+
+				if(sinal.equals("soma")) {
+					visor.setText(mat.soma(valor1, valor2) + "");
+				}
+				if(sinal.equals("subtracao")) {
+					visor.setText(mat.subtracao(valor1,valor2)+"");
+				}
+				if(sinal.equals("multiplicacao")) {
+					visor.setText(mat.multiplicacao(valor1, valor2)+"");
+				}
+				if(sinal.equals("divisao")) {
+					visor.setText(mat.divisao(valor1, valor2)+"");
+				}
+			}
+		});
 		
 		//sexta fileira
 		zero.setFont(new Font("Arial", Font.PLAIN, 12));
 		zero.setMargin(new Insets(1,1,1,1));
 		zero.setBounds(20, 245, 65, 25);
 		paine.add(zero);
+		zero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.out.println("7");
+				
+				if(visor.getText().equals("0")) {
+					visor.setText("0");
+				}else {
+					visor.setText(visor.getText() + "0");
+				}
+				
+				
+			}
+		});
 		
 		btnvirgula.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnvirgula.setMargin(new Insets(1,1,1,1));
@@ -266,6 +466,14 @@ public class Calculadora extends JFrame {
 		btnfmais.setMargin(new Insets(1,1,1,1));
 		btnfmais.setBounds(125, 245, 30, 25);
 		paine.add(btnfmais);
+		btnfmais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1 = Double.parseDouble(visor.getText());
+				sinal = "soma";
+				visor.setText("0");
+			}
+		});
+		
 			
 		
 		this.setSize(228, 322);
