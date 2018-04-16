@@ -3,7 +3,6 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 import java.awt.Container;
@@ -80,9 +79,12 @@ public class Calculadora extends JFrame {
 	JButton nove = new JButton("9");
 	JButton zero = new JButton("0");
 	
+	//Obejeto classa funções matematicas
 	FuncoesMatematicas mat = new FuncoesMatematicas();
-	String sinal = null, sinalp = null;
-	double valor1 = 0, valor2 = 0;
+	
+	//variaveis
+	String sinal = null, str = null;
+	double valor1 = 0, valor2 = 0, memoria = 0,mod = 0;
 	
 	
 	public Calculadora(){
@@ -135,7 +137,7 @@ public class Calculadora extends JFrame {
 		paine.add(btnMC);
 		btnMC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					visor.setText("0");				
+					memoria = 0;			
 			}
 		});
 		
@@ -144,32 +146,67 @@ public class Calculadora extends JFrame {
 		btnMR.setMargin(new Insets(1,1,1,1));
 		btnMR.setBounds(55, 95, 30,25);
 		paine.add(btnMR);
+		btnMR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visor.setText(memoria+"");
+			}
+		});
 		
 		btnMS.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMS.setMargin(new Insets(1,1,1,1));
 		btnMS.setBounds(90, 95, 30,25);
 		paine.add(btnMS);
+		btnMS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria = Double.parseDouble(visor.getText());
+				visor.setText("0");
+			}
+		});
 		
 		btnMais.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMais.setMargin(new Insets(1,1,1,1));
 		btnMais.setBounds(125, 95, 30,25);
 		paine.add(btnMais);
+		btnMais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria = Double.parseDouble(visor.getText()) + memoria;
+				visor.setText("0");
+			}
+		});
 		
 		btnMenos.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnMenos.setMargin(new Insets(1,1,1,1));
 		btnMenos.setBounds(160, 95, 30,25);
 		paine.add(btnMenos);
+		btnMenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memoria =  memoria- Double.parseDouble(visor.getText()) ;
+				visor.setText("0");
+			}
+		});
 		
 		//segunda fileira
 		backsp.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		backsp.setMargin(new Insets(1,1,1,1));
 		backsp.setBounds(20, 125, 30, 25);
 		paine.add(backsp);
+		backsp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				str = visor.getText();
+				str = str.substring(0, str.length()-1);
+				visor.setText(str);
+			}
+		});
 		
 		btnCE.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnCE.setMargin(new Insets(1,1,1,1));
 		btnCE.setBounds(55, 125, 30, 25);
 		paine.add(btnCE);
+		btnCE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visor.setText("0");
+			}
+		});
 		
 		btnC.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnC.setMargin(new Insets(1,1,1,1));
@@ -177,6 +214,7 @@ public class Calculadora extends JFrame {
 		paine.add(btnC);
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					sinal = null;
 					visor.setText("0");				
 			}
 		});
@@ -187,11 +225,22 @@ public class Calculadora extends JFrame {
 		btnmom.setMargin(new Insets(1,1,1,1));
 		btnmom.setBounds(125, 125, 30, 25);
 		paine.add(btnmom);
+		btnmom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mod = Double.parseDouble(visor.getText());
+				visor.setText(Math.abs(mod)+"");					
+			}
+		});
 		
 		btnraiz.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
 		btnraiz.setMargin(new Insets(1,1,1,1));
 		btnraiz.setBounds(160, 125, 30, 25);
 		paine.add(btnraiz);
+		btnraiz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visor.setText(Math.sqrt(Double.parseDouble(visor.getText()))+"");
+			}
+		});
 		
 		//terceira fileira
 		sete.setFont( new Font( "Arial", Font.PLAIN, 12 ) );
@@ -345,6 +394,11 @@ public class Calculadora extends JFrame {
 		btnfra.setMargin(new Insets(1,1,1,1));
 		btnfra.setBounds(160, 185, 30, 25);
 		paine.add(btnfra);
+		btnfra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visor.setText((1/Double.parseDouble(visor.getText()))+"");
+			}
+		});
 		
 		//quinta fileira
 		
